@@ -29,11 +29,15 @@ contract BeansOnBase is ERC1155, Ownable {
 
         baseURI = _baseURI;
         name = "BeansOnBase";
-        symbol = "BEANS";
+        symbol = unicode"☕️";
     }
 
     function uri(uint256 _id) public view override returns (string memory) {
         return string(abi.encodePacked(baseURI, LibString.toString(_id)));
+    }
+
+    function tokenURI(uint256 _id) public view returns (string memory) {
+        return uri(_id);
     }
 
     function buy(uint256 _id, uint256 _quantity) external payable {
